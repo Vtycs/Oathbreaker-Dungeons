@@ -9,6 +9,7 @@
 ---
 
 ## Sobre o projeto
+![2222](https://github.com/user-attachments/assets/9b53003e-c405-4a3e-ac3c-b9efbdb625e4)
 
 Oathbreaker Dungeons é um roguelite de ação 2D com geração procedural de salas, sistema de buffs e arquétipos, e **co-op online via Steam** para até 4 jogadores. O projeto foi desenvolvido de forma independente — da engine ao deploy na plataforma — e está disponível na Steam.
 
@@ -250,6 +251,12 @@ CREDITS           → faixa de créditos
 - **Engine não projetada para jogos** — p5.js adaptado com hit stop, coyote time, múltiplos buffers gráficos
 
 ---
+
+## Imagens
+
+![23334](https://github.com/user-attachments/assets/1caaf8a6-3f1f-4f54-a8d7-710f60b482cf) 
+![02299](https://github.com/user-attachments/assets/deb67342-da63-47fd-8715-aca78b43aa01)
+
 
 *Desenvolvido de forma independente. Publicado na Steam.*
 *Developed by Empty TEAM -Poggerz*
