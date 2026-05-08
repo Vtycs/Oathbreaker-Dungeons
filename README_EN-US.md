@@ -4,9 +4,9 @@
 ![2222](https://github.com/user-attachments/assets/84543e4f-5afe-4b46-bd32-5d9eb764985a)
 
 
-[](https://store.steampowered.com)
-[](https://www.google.com/search?q=%23stack)
-[](https://www.google.com/search?q=%23p2p-network-system)
+[![Steam](https://img.shields.io/badge/Steam-Publicado-1b2838?style=flat&logo=steam)](https://store.steampowered.com/app/4461820/Oathbreak_Dungeons/)
+[![Stack](https://img.shields.io/badge/Stack-Electron%20%2B%20p5.js-61DAFB?style=flat)](#stack)
+[![Rede](https://img.shields.io/badge/Rede-P2P%20Steam-informational?style=flat)](#sistema-de-rede-p2p)
 
 -----
 
