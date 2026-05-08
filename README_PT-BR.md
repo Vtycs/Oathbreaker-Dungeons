@@ -2,7 +2,7 @@
 
 > Roguelite 2D com co-op online publicado na Steam — desenvolvido de forma independente.
 
-[![Steam](https://img.shields.io/badge/Steam-Publicado-1b2838?style=flat&logo=steam)]([https://store.steampowered.com](https://store.steampowered.com/app/4461820/Oathbreak_Dungeons/))
+[![Steam](https://img.shields.io/badge/Steam-Publicado-1b2838?style=flat&logo=steam)]([https://store.steampowered.com)
 [![Stack](https://img.shields.io/badge/Stack-Electron%20%2B%20p5.js-61DAFB?style=flat)](#stack)
 [![Rede](https://img.shields.io/badge/Rede-P2P%20Steam-informational?style=flat)](#sistema-de-rede-p2p)
 
