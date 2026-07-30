@@ -1,4 +1,4 @@
-# Oathbreaker Dungeons V2.0.2 :)
+# Oathbreaker Dungeons V0.0.2 :)
 
 > Roguelite 2D com co-op online publicado na Steam — desenvolvido de forma independente.
 
@@ -11,7 +11,7 @@
 ## Sobre o projeto
 ![2222](https://github.com/user-attachments/assets/9b53003e-c405-4a3e-ac3c-b9efbdb625e4)
 
-Oathbreaker Dungeons é um roguelite de ação 2D com geração procedural de salas, sistema de buffs e arquétipos, e **co-op online via Steam** para até 4 jogadores. O projeto foi desenvolvido de forma independente — da engine ao deploy na plataforma — e está disponível na Steam.
+Oathbreaker Dungeons é um roguelite de ação 2D com geração procedural de salas, sistema de buffs/runas e arquétipos, e **co-op online via Steam** para até 4 jogadores. O projeto foi desenvolvido de forma independente — da engine ao deploy na plataforma — e está disponível na Steam.
 
 > **Este repositório é um portfólio técnico.** Apresenta a arquitetura, as decisões de engenharia e trechos representativos do código. O código-fonte completo é privado.
 
@@ -83,6 +83,7 @@ const PKT = {
 - Heartbeat com timeout de 8 segundos e detecção de host perdido
 - Sequenciamento de inputs do cliente para evitar desync
 - Efeitos de slow-motion e time stop sincronizados via pacotes dedicados
+- Camada de confiabilidade reforçada: correção de bugs de Buffer/contextIsolation, correção da lógica de reliable-send, resolução de bugs de parsing de pacotes e sincronização da seed de sala entre clients
 
 ---
 
@@ -140,6 +141,12 @@ Detalhes de física e feedback que tornam o movimento responsivo:
 
 ---
 
+### Escala de renderização & suporte a alta taxa de atualização
+
+Após a migração para um monitor 2K (2560x1440) 144Hz, o renderer ganhou uma escala de renderização com supersampling (`RENDER_SCALE`) desacoplada da lógica do jogo: a simulação continua rodando em um `frameCount` lógico fixo a 60 ticks/segundo, enquanto a renderização destrava para a taxa de atualização nativa do monitor.
+
+---
+
 ### Hierarquia de entidades de plataforma
 
 Todas as plataformas herdam de uma classe base e sobrescrevem `update()` e `display()` com comportamento próprio:
@@ -156,9 +163,9 @@ Platform (base)
 
 ---
 
-### Sistema de buffs e arquétipos
+### Sistema de buffs, runas e arquétipos
 
-O jogo possui mais de 60 buffs únicos e 8 arquétipos. O método `addBuff()` coordena todos os efeitos em cadeia:
+O jogo possui mais de 60 buffs únicos, 8 arquétipos, e um sistema expandido de combos de runas com 113 combinações (**Caos Verdadeiro**), além de um sistema de níveis de conta persistente para meta-progressão. O método `addBuff()` coordena todos os efeitos em cadeia:
 
 1. Adiciona o buff ao array do jogador
 2. Dispara partículas e texto flutuante
@@ -168,6 +175,18 @@ O jogo possui mais de 60 buffs únicos e 8 arquétipos. O método `addBuff()` co
 6. Persiste metaestats em disco
 
 Alguns buffs afetam **todos os jogadores simultaneamente** — `B_LAST_STAND` reduz todos para 1 HP e triplica o multiplicador de dano; `B_LIFE_DEBT` dá um buff aleatório a todos mas duplica o HP e o dano dos inimigos da sala.
+
+---
+
+### Fusão de armas — sistema de FORMAS
+
+A fusão de armas originalmente empilhava buffs simples de stat um sobre o outro — "um buff sobre buff, sem graça". Esse design foi abandonado em favor de identidades mecânicas e visuais distintas por combinação: cada fusão vira seu próprio arquétipo de arma (uma FORMA), não apenas um upgrade de números.
+
+Exemplos:
+- Pistola + Pistola → duas pistolas revezando tiros
+- Escopeta + Lança → escopeta que atira lanças com pierce
+
+FORMAS implementadas incluem: **Akimbo**, **Rajada**, **Munição Viva**, **Baioneta**, **Cano Duplo**, **Colosso** e **Lâminas Gêmeas**.
 
 ---
 
@@ -249,6 +268,8 @@ CREDITS           → faixa de créditos
 - **P2P sem servidor dedicado** — protocolo host-authoritative sobre Steamworks sockets
 - **Resync ao trocar de sala** — host envia layout completo da nova sala ao client após geração
 - **Engine não projetada para jogos** — p5.js adaptado com hit stop, coyote time, múltiplos buffers gráficos
+- **Reforço de confiabilidade de rede** — correção de bugs de Buffer/contextIsolation, correção da lógica de reliable-send, resolução de bugs de parsing de pacotes e sincronização da seed de sala entre clients
+- **Renderização em alta taxa de atualização desacoplada da simulação** — escala de renderização com supersampling (`RENDER_SCALE`) com a lógica do jogo mantendo tick fixo a 60/s via frameCount lógico
 
 ---
 
